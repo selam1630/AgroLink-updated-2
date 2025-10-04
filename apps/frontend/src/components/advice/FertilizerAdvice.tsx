@@ -13,7 +13,7 @@ interface SoilData {
   nitrogen?: number;
   phosphorus?: number;
   potassium?: number;
-  recommendedFertilizer?: string;
+  recommendation?: string; 
 }
 
 const FertilizerAdvice: React.FC = () => {
@@ -27,7 +27,7 @@ const FertilizerAdvice: React.FC = () => {
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
-  // Fetch registered farmers from backend
+  // ✅ Fetch farmers from backend (including recommendation)
   useEffect(() => {
     const fetchFarmers = async () => {
       if (!token) return;
@@ -37,7 +37,6 @@ const FertilizerAdvice: React.FC = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        // Map backend response to frontend state
         const mappedFarmers: SoilData[] = res.data.map((f: any) => ({
           id: f.id,
           name: f.name,
@@ -48,12 +47,12 @@ const FertilizerAdvice: React.FC = () => {
           nitrogen: f.soilData?.nitrogen ?? undefined,
           phosphorus: f.soilData?.phosphorus ?? undefined,
           potassium: f.soilData?.potassium ?? undefined,
+          recommendation: f.recommendation || "No advice yet", // ✅
         }));
 
         setFarmers(mappedFarmers);
         setFilteredFarmers(mappedFarmers);
       } catch (err: any) {
-        // Detailed error logging
         if (err.response) {
           console.error(
             "Backend Error:",
@@ -78,9 +77,9 @@ const FertilizerAdvice: React.FC = () => {
     };
 
     fetchFarmers();
-  }, [token]);
+  }, [token, API_URL]);
 
-  // Search/filter farmers by name or region
+  // ✅ Search
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     setSearch(value);
@@ -92,7 +91,7 @@ const FertilizerAdvice: React.FC = () => {
     setFilteredFarmers(filtered);
   };
 
-  // Send fertilizer advice
+  // ✅ Send advice
   const sendAdvice = async (farmer: SoilData) => {
     if (!farmer.id) return;
 
@@ -111,16 +110,14 @@ const FertilizerAdvice: React.FC = () => {
       );
 
       setSuccessMessage(`Advice sent to ${farmer.name}: ${recommended}`);
-
-      // Update local state
       setFarmers((prev) =>
         prev.map((f) =>
-          f.id === farmer.id ? { ...f, recommendedFertilizer: recommended } : f
+          f.id === farmer.id ? { ...f, recommendation: recommended } : f
         )
       );
       setFilteredFarmers((prev) =>
         prev.map((f) =>
-          f.id === farmer.id ? { ...f, recommendedFertilizer: recommended } : f
+          f.id === farmer.id ? { ...f, recommendation: recommended } : f
         )
       );
     } catch (err: any) {
@@ -207,7 +204,7 @@ const FertilizerAdvice: React.FC = () => {
                 <td className="p-4">{farmer.phosphorus ?? "-"}</td>
                 <td className="p-4">{farmer.potassium ?? "-"}</td>
                 <td className="p-4 text-sm text-gray-700">
-                  {farmer.recommendedFertilizer || (
+                  {farmer.recommendation || (
                     <span className="text-gray-400 italic">No advice yet</span>
                   )}
                 </td>

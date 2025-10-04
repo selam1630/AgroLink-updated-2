@@ -28,6 +28,7 @@ import AdminDashboard2 from "./components/Admin2Dashboard";
 import AdminDashboard3 from "./components/authPages/admin page"
 import NewPostingPage from "./pages/NewPostingPage";
 import FertilizerAdvice from "./components/advice/FertilizerAdvice"
+import FarmerAdviceDashboard from "./components/advice/fertlizerAdvice for dashbord";
 function App() {
   return (
     <CartProvider>
@@ -62,6 +63,7 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/disease-detection" element={<AdviceForm />} />
+            <Route path="/my-advice" element={<FarmerAdviceDashboard />} />
           </Route>
         
 
