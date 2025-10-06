@@ -211,7 +211,7 @@ const FertilizerAdvice: React.FC = () => {
                 <td className="p-4 text-center">
                   <button
                     onClick={() => sendAdvice(farmer)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition duration-200"
+                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition duration-200"
                   >
                     Send Advice
                   </button>
