@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import prisma from "../prisma/prisma";
 
 /**
- * @route POST /api/admin/farmers
- * @description Add a farmer to the registry (admin only)
+ * @route 
+ * @description 
  */
 export const addFarmerToRegistry = async (req: Request, res: Response) => {
   const { name, phone, region } = req.body;
-  const adminId = req.user?.id; // coming from JWT middleware
+  const adminId = req.user?.id; 
 
   if (!name || !phone) {
     return res.status(400).json({ error: "Name and phone are required" });
@@ -41,8 +41,8 @@ export const addFarmerToRegistry = async (req: Request, res: Response) => {
 };
 
 /**
- * @route GET /api/admin/farmers
- * @description List all farmers in registry (admin only)
+ * @route 
+ * @description 
  */
 export const listFarmers = async (req: Request, res: Response) => {
   try {
@@ -61,20 +61,13 @@ export const listFarmers = async (req: Request, res: Response) => {
 
 /**
  * @route GET /api/admin/metrics
- * @description Fetch metrics for the admin dashboard
+ * @description 
  */
 export const getAdminMetrics = async (req: Request, res: Response) => {
   try {
-    // Total farmers
     const totalFarmers = await prisma.farmerRegistry.count();
-
-    // Total news/posts
     const totalNews = await prisma.news.count();
-
-    // Pending tasks (example static value, update logic if needed)
     const pendingTasks = 3;
-
-    // Market data (mock data, can be dynamic)
     const marketData = [
       { crop: "Teff", price: 1200, trend: "up" },
       { crop: "Maize", price: 800, trend: "down" },

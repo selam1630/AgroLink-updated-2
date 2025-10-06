@@ -25,7 +25,8 @@
     "diseaseDetection": "Disease Detection",
     "news": "News",
     "calendar": "Calendar",
-    "helpCenter": "Help Center"
+    "helpCenter": "Help Center",
+    "Fertilizer Advice": "Fertilizer Advice"
   },
   "header": {
     "searchPlaceholder": "Search...",
@@ -374,6 +375,33 @@
     "failedMessage": "Failed to add farmer. Please try again.",
     "networkError": "Network error. Please check your connection.",
     "notAuthenticated": "You are not authenticated. Please sign in."
+  },
+   "adminDashboard": {
+    "title": "Admin Dashboard",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter a secure password",
+    "createAdminButton": "Create Admin",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Enter phone number",
+    "logoutButton": "Logout",
+    "description": "Manage administrative users for the AgroLink platform.",
+     "farmerNameLabel": "Farmer Name",
+    "farmerNamePlaceholder": "Enter farmer's full name",
+    "phoneLabel": "Phone Number", 
+    "phonePlaceholder": "Enter phone number", 
+    
+    "regionLabel": "Region",
+    "regionPlaceholder": "Select region",
+    "addFarmerButton": "Add Farmer"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password"
   }
 }
-

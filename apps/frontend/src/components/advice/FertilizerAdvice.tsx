@@ -26,8 +26,6 @@ const FertilizerAdvice: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-
-  // ✅ Fetch farmers from backend (including recommendation)
   useEffect(() => {
     const fetchFarmers = async () => {
       if (!token) return;

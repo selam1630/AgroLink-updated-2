@@ -26,7 +26,8 @@
     "diseaseDetection": "የበሽታ ማወቂያ",
     "news": "ዜና",
     "calendar": "ቀን መቁጠሪያ",
-    "helpCenter": "የእርዳታ መረጃ ማዕከል"
+    "helpCenter": "የእርዳታ መረጃ ማዕከል",
+    "Fertilizer Advice": "የእርሻ እንክብካቤ"
   },
   "header": {
     "searchPlaceholder": "ፈልግ...",
@@ -377,5 +378,19 @@
     "failedMessage": "ገበሬን ማከል አልተቻለም። እባክዎን ደግመው ይሞክሩ።",
     "networkError": "የኔትዎርክ ስህተት። እባክዎን ግንኙነትዎን ያረጋግጡ።",
     "notAuthenticated": "አልተገባውም። እባክዎን ይግቡ።"
+  },
+  "adminDashboard": {
+    "title": "የአስተዳዳሪ ዳሽቦርድ",
+    "nameLabel": "ስም",
+    "namePlaceholder": "ስም ያስገቡ",
+    "emailLabel": "ኢሜይል",
+    "emailPlaceholder": "የኢሜይል አድራሻ ያስገቡ",
+    "passwordLabel": "የይለፍ ቃል",
+    "passwordPlaceholder": "ጠንካራ የይለፍ ቃል ያስገቡ",
+    "createAdminButton": "አስተዳዳሪ ፍጠር",
+    "phoneLabel": "ስልክ ቁጥር",
+    "phonePlaceholder": "ስልክ ቁጥር ያስገቡ",
+    "logoutButton": "ውጣ",
+    "description": "የአግሮሊንክ መድረክ አስተዳዳሪ ተጠቃሚዎችን ያስተዳድሩ።"
   }
 }

@@ -44,7 +44,7 @@ const AdminDashboard: React.FC = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <div className="flex items-center mb-6">
-        <img src={agriIcon} alt="AgroTech Logo" className="w-16 h-16 mr-4" />
+        {/* <img src={agriIcon} alt="AgroTech Logo" className="w-16 h-16 mr-4" /> */}
         <h1 className="text-3xl font-bold text-green-700">Admin Dashboard</h1>
       </div>
 
