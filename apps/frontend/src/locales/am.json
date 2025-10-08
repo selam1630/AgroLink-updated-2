@@ -392,5 +392,133 @@
     "phonePlaceholder": "ስልክ ቁጥር ያስገቡ",
     "logoutButton": "ውጣ",
     "description": "የአግሮሊንክ መድረክ አስተዳዳሪ ተጠቃሚዎችን ያስተዳድሩ።"
+  },
+   "landingPage": {
+    "heroPhrase1": "አግሮLink",
+    "heroPhrase2": "የገበሬ ምርጥ አጋር",
+    "heroSubtext": "የኢትዮጵያ ገበሬዎችን በቴክኖሎጂ እና በፈጠራ ማብቃት",
+    "getStarted": "ጀምር →",
+    "servicesTitle": "አገልግሎቶቻችን",
+    "connectBuyers": {
+      "title": "ገዢዎችን እና ገበሬዎችን ማገናኘት",
+      "description": "ቀጥታ ገበያ መካከለኛዎችን ማስወገድ። ገበሬዎች ፍትሃዊ ዋጋ ያገኛሉ፣ ገዢዎች ቀጥታ ከምንጭ ትኩስ ምርት ያገኛሉ።"
+    },
+    "aiDetection": {
+      "title": "AI የሰብል በሽታ ማሳወቂያ",
+      "description": "ከእርሻ ፎቶዎች ፈጣን ማነጋገር። ጉዳቱ ከመስፋፋቱ በፊት ሰብሎችዎን ለማዳን የሕክምና እቅዶችን ያግኙ።"
+    },
+    "advisor": {
+      "title": "24/7 የርሻ አማካሪ",
+      "description": "በፖክትዎ ውስጥ ምናባዊ የርሻ ባለሙያ። ስለአፈር ጤና፣ ስላሞች መቆጣጠር እና የሰብል ዑደቶች በአማርኛ ወይም በኦሮምኛ ግላዊ ምክር ያግኙ።"
+    },
+    "weather": {
+      "title": "የተወሰነ ቦታ የአየር ሁኔታ ማሳወቂያዎች እና ትንበያ",
+      "description": "ለትክክለኛ ቦታዎ ትክክለኛ ትንበያዎች እና የወደፊት ትንበያዎች። የአፈር እርጥበት ትንተናም እናቀርባለን"
+    },
+    "learnMore": "ተጨማሪ ይወቁ",
+    "signUp": "ይመዝገቡ",
+    "appName": "አግሮLink"
+  },
+  "testimonials": {
+    "title": "ገበሬዎች ምን ይላሉ?",
+    "subtitle": "የርሻ ልምዶቻቸውን በመድረኳችን የቀየሩ በሺዎች የሚቆጠሩ ገበሬዎች ይቀላቀሉ።",
+    "abebe": {
+      "name": "አበበ",
+      "role": "ገበሬ፣ ደቡብ ወሎ",
+      "quote": "የAI ማሳወቂያ እና የባለሙያ ምክር በመጠቀም የሰብል ምርቴን በ40% ጨምራለሁ።"
+    },
+    "kebed": {
+      "name": "ከበደ",
+      "role": "የሻይ እርሻ ባለቤት፣ ጋምቤላ",
+      "quote": "ገበያው ቀጥታ ከዓለም አቀፍ ገዢዎች ጋር አገናኘኝ።"
+    },
+    "shemsu": {
+      "name": "ሸምሱ",
+      "role": "የወተት እና የሰብል ገበሬ፣ ሲዳማ",
+      "quote": "የአየር ሁኔታ ትንበያዎች ሰብሎቼን ከድንገተኛ የመጋዝ ዝናቦች አዳኑ።"
+    }
+  },
+  "faq": {
+    "title": "ተደጋግሞ የሚጠየቁ ጥያቄዎች",
+    "cropDetection": {
+      "question": "የAI የሰብል ማሳወቂያ እንዴት ይሠራል?",
+      "answer": "የእኛ AI የሳተላይት ምስሎችን እና የማሽን ትምህርትን በመጠቀም የሰብል ጤና ጉዳቶችን፣ ስላሞችን እና በሽታዎችን በ95% ትክክለኛነት ይለያል።"
+    },
+    "connectFarmers": {
+      "question": "ገበሬዎችን ከገዢዎች ጋር እንዴት ትገናኛላችሁ?",
+      "answer": "መድረኳችን ሁለቱንም ገበሬዎች እና ገዢዎች ያረጋግጣል፣ ቀጥታ ግንኙነት ያመቻቻል እና በገበያ ትንተና ፍትሃዊ የዋጋ አሰጣጥ ያረጋግጣል።"
+    },
+    "supportedCrops": {
+      "question": "ምን ምን ሰብሎችን ትደግፋላችሁ?",
+      "answer": "ሩዝ፣ ስንዴ፣ ጥጥ፣ ፍራፍሬዎች፣ አትክልቶች እና ልዩ ሰብሎችን ጨምሮ ሁሉንም ዋና ዋና ሰብሎች በተለያዩ ክልሎች እንደርዳለን።"
+    }
+  },
+  "stats": {
+    "farmersEmpowered": "የተባበሩ ገበሬዎች",
+    "cropsProtected": "የተቆጡ ሰብሎች",
+    "yieldIncrease": "አማካይ የምርት ጭማሪ",
+    "satisfaction": "የገበሬ እርካታ"
+  },
+  "about": {
+    "title": "ርሻን በቴክኖሎጂ ማማወር",
+    "description": "ባህላዊ የርሻ ልምዶችን የሚቀይሩ ዘመናዊ ቴክኖሎጂዎችን በመጠቀም ገበሬዎችን ማብቃት ቃል ገብተናል። መድረኳችን AI፣ የውሂብ ትንተና እና የርሻ ባለሙያነትን በማጣመር ለዘመናዊ ገበሬ ዘላቂ መፍትሄዎችን ይፈጥራል።",
+    "mission": "በ2025 በቴክኖሎጂ እና ርሻ መካከል ግንኙነት ለማድረግ በተቋቋመ",
+    "serviceArea": "በመላው ኢትዮጵያ ለገበሬዎች አገልግሎት የምንሰጥ",
+    "innovationAlt": "የርሻ ፈጠራ",
+    "sustainabilityAlt": "ዘላቂ ርሻ"
+  },
+  "contact": {
+    "title": "አግኙን",
+    "description": "ስለ መድረኳችን ጥያቄዎች አሉዎት? እኛ ቡድን እንዲጀምሩ እና ማንኛውም ጥያቄዎችዎን ለመመለስ እዚህ አለን።",
+    "email": "ኢሜይል",
+    "phone": "ስልክ",
+    "office": "ቢሮ",
+    "emailSubtitle": "በ24 ሰዓታት ውስጥ እንመልሳለን",
+    "phoneSubtitle": "ሰኞ-አርብ ከጠዋት 9 እስከ ማታ 6 ድረስ",
+    "officeSubtitle": "የርሻ ፈጠራ ፓርክ፣ ኢትዮጵያ",
+    "sendMessage": "መልእክት ይላኩ",
+    "form": {
+      "firstName": "ስም",
+      "lastName": "የአባት ስም",
+      "email": "ኢሜይል",
+      "subject": "ርዕስ",
+      "message": "መልእክት",
+      "firstNamePlaceholder": "አበበ",
+      "lastNamePlaceholder": "ከበደ",
+      "emailPlaceholder": "abebe@example.com",
+      "subjectPlaceholder": "እንዴት ልንርዳህ እንችላለን?",
+      "messagePlaceholder": "ስለ የርሻ ፍላጎቶችዎ ይንገሩን..."
+    }
+  },
+  "cta": {
+    "title": "ርሻዎን ለመቀየር ዝግጁ ነዎት?",
+    "description": "የምርት እና ትርፋቸውን በAI የሚነዳ መድረኳችን እየጨመሩ ያሉ በሺዎች የሚቆጠሩ ገበሬዎች ይቀላቀሉ።",
+    "startButton": "ጀምር",
+    "demoButton": "ዲሞ ያዝዙ"
+  },
+  "footer": {
+    "description": "ገበሬዎችን በAI ቴክኖሎጂ ማብቃት ለዘላቂ ርሻ።",
+    "product": "ምርት",
+    "company": "ኩባንያ",
+    "support": "ድጋፍ",
+    "features": "ባህሪያት",
+    "pricing": "የዋጋ አሰጣጥ",
+    "caseStudies": "የጉዳይ ጥናቶች",
+    "updates": "ዝመናዎች",
+    "about": "ስለ እኛ",
+    "careers": "ሥራዎች",
+    "blog": "ብሎግ",
+    "press": "ፕሬስ",
+    "helpCenter": "የእርዳታ ማዕከል",
+    "contact": "አግኙን",
+    "documentation": "ሰነዶች",
+    "apiStatus": "የAPI ሁኔታ",
+    "copyright": "© 2025 አግሮLink። ሁሉም መብቶች የተጠበቁ ናቸው።"
+  },
+  "social": {
+    "facebook": "ፌስቡክ",
+    "twitter": "ትዊተር",
+    "linkedin": "ሊንክዲን",
+    "instagram": "ኢንስታግራም"
   }
 }
