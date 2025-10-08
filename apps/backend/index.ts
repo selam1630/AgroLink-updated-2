@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import path from "path";
 import cors from "cors";
 import authRoutes from "./routes/auth.route";
 import smsRoutes from "./routes/sms.route";
@@ -37,6 +38,7 @@ app.use("/public", express.static("public"));
 app.use("/api/admin", adminRoutes);
 app.use("/news", newsRoutes);
 app.use("/api/fertilizer", fertilizerRoutes);
+app.use("/audio", express.static(path.join(process.cwd(), "public", "audio")));
 
 
 const PORT = 5000;

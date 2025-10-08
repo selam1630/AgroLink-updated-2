@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^6.3.0",
     "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.13.0",
     "@types/bcrypt": "^6.0.0",
