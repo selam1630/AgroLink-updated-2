@@ -5,20 +5,26 @@ import {
   HomeIcon,
   PackageIcon,
   PlusIcon,
-  ShoppingCartIcon,
+  ClipboardListIcon,
   ActivityIcon,
-  NewspaperIcon,
-  CalendarIcon,
   LeafIcon,
-  CloudSunIcon,
+  CalendarIcon,
+  BarChart3Icon,
   SettingsIcon,
   HelpCircleIcon,
+  LogOutIcon,
+  NewspaperIcon,
+  CloudSunIcon,
 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+
 const SidebarLayout: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const { signOut } = useAuth();
   const isLoggedIn = true; 
   const isActive = (path: string) => location.pathname === path;
+
   const sidebarBgClass = "bg-green-800";
   const defaultTextClass = "text-green-100";
   const hoverBgClass = "hover:bg-green-700";
@@ -40,7 +46,7 @@ const SidebarLayout: React.FC = () => {
         </p>
       </div>
 
-      {/* Mobile-only sign-in/sign-up buttons, hidden on larger screens */}
+      {/* Mobile-only sign-in/sign-up buttons */}
       {!isLoggedIn && (
         <div className="flex flex-col gap-2 px-3 py-3 border-b border-green-700 md:hidden">
           <Link
@@ -70,7 +76,7 @@ const SidebarLayout: React.FC = () => {
           }`}
         >
           <HomeIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.home")}</span>
+          <span className="font-medium">{t("nav.home") || "Dashboard"}</span>
         </Link>
 
         {/* Create Product Link */}
@@ -83,44 +89,9 @@ const SidebarLayout: React.FC = () => {
           }`}
         >
           <PlusIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.createProduct")}</span>
-        </Link>
-
-        {/* Services Link */}
-        <Link
-          to="my-advice"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/my-advice")
-              ? `${activeBgClass} shadow-md`
-              : `${hoverBgClass}`
-          }`}
-        >
-          <LeafIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.Fertilizer Advice")}</span>
-        </Link>
-
-        {/* Disease Detection Link */}
-        <Link
-          to="/disease-detection"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/disease-detection")
-              ? `${activeBgClass} shadow-md`
-              : `${hoverBgClass}`
-          }`}
-        >
-          <ActivityIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.diseaseDetection")}</span>
-        </Link>
-
-        {/* News Link */}
-        <Link
-          to="/news"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/news") ? `${activeBgClass} shadow-md` : `${hoverBgClass}`
-          }`}
-        >
-          <NewspaperIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.news")}</span>
+          <span className="font-medium">
+            {t("nav.createProduct") || "Post Product"}
+          </span>
         </Link>
 
         {/* Products Link */}
@@ -133,20 +104,61 @@ const SidebarLayout: React.FC = () => {
           }`}
         >
           <PackageIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.products")}</span>
+          <span className="font-medium">{t("nav.products") || "Products"}</span>
         </Link>
 
-        {/* Weather Detector Link (hidden on larger screens) */}
+        {/* Pending Posts (Admin) */}
         <Link
-          to="/weather-detector"
-          className={`flex md:hidden items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/weather-detector")
+          to="/new-posting"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/new-posting")
               ? `${activeBgClass} shadow-md`
               : `${hoverBgClass}`
           }`}
         >
-          <CloudSunIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.weather")}</span>
+          <ClipboardListIcon className="w-5 h-5" />
+          <span className="font-medium">Pending Posts</span>
+        </Link>
+
+        {/* Fertilizer Advice */}
+        <Link
+          to="/fertilizer-advice"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/fertilizer-advice")
+              ? `${activeBgClass} shadow-md`
+              : `${hoverBgClass}`
+          }`}
+        >
+          <LeafIcon className="w-5 h-5" />
+          <span className="font-medium">
+            {t("Soil Advice") || "Fertilizer Advice"}
+          </span>
+        </Link>
+
+        {/* Disease Detection Link */}
+        <Link
+          to="/disease-detection"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/disease-detection")
+              ? `${activeBgClass} shadow-md`
+              : `${hoverBgClass}`
+          }`}
+        >
+          <ActivityIcon className="w-5 h-5" />
+          <span className="font-medium">
+            {t("nav.diseaseDetection") || "Disease Detection"}
+          </span>
+        </Link>
+        
+        {/* News Link */}
+        <Link
+          to="/news"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/news") ? `${activeBgClass} shadow-md` : `${hoverBgClass}`
+          }`}
+        >
+          <NewspaperIcon className="w-5 h-5" />
+          <span className="font-medium">{t("nav.news") || "News"}</span>
         </Link>
 
         {/* Calendar Link */}
@@ -159,35 +171,27 @@ const SidebarLayout: React.FC = () => {
           }`}
         >
           <CalendarIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.calendar")}</span>
+          <span className="font-medium">{t("nav.calendar") || "Calendar"}</span>
         </Link>
+        
+        {/* Weather Detector Link */}
+        <Link
+          to="/weather-detector"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/weather-detector")
+              ? `${activeBgClass} shadow-md`
+              : `${hoverBgClass}`
+          }`}
+        >
+          <CloudSunIcon className="w-5 h-5" /> 
+          <span className="font-medium">Send Alert</span>
+        </Link>
+        
+      <div className="">
+        © 2025 AgroLink. All rights reserved. • AgroLink v1.0
+      </div>
       </nav>
-
-      {/* Bottom Section */}
-      <div className="p-2 space-y-1 border-t border-green-700 mt-auto">
-        {/* Settings Link (hidden on larger screens) */}
-        <Link
-          to="/settings"
-          className={`flex md:hidden items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${hoverBgClass}`}
-        >
-          <SettingsIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.settings")}</span>
-        </Link>
-
-        {/* Help Center Link */}
-        <Link
-          to="/help"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${hoverBgClass}`}
-        >
-          <HelpCircleIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.helpCenter")}</span>
-        </Link>
-      </div>
-
-      {/* Footer */}
-      <div className="p-3 text-xs text-green-300 text-center border-t border-green-700">
-        {t("footer.copyright")} • AgroLink v1.0
-      </div>
+      
     </div>
   );
 };

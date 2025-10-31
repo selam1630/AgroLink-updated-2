@@ -39,10 +39,9 @@ const handleLoginSuccess = (data: any) => {
     localStorage.setItem('role', data.role);
     if (data.role === 'super_admin') {
         navigate('/admin-dashboard'); 
-    } else if (data.role === 'farmer') {
-        navigate('/dashboard'); 
     } else if (data.role === 'admin') {
-        navigate('/admin-dashboard3');}
+        navigate('/dashboard'); 
+    } 
     else {
         navigate('/products'); 
     }

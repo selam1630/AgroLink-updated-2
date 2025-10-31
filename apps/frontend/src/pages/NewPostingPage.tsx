@@ -156,7 +156,7 @@ const NewPostingPage: React.FC = () => {
           <div className="flex justify-between">
             <button
               type="button"
-              onClick={() => navigate("/admin-dashboard3")}
+              onClick={() => navigate("/dashboard")}
               className="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-all duration-300"
             >
               ⬅ Back
