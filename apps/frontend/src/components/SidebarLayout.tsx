@@ -152,16 +152,14 @@ const SidebarLayout: React.FC = () => {
         
         {/* News Link */}
         <Link
-          to="/news"
+          to="admin-dashboard2"
           className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/news") ? `${activeBgClass} shadow-md` : `${hoverBgClass}`
+            isActive("admin-dashboard2") ? `${activeBgClass} shadow-md` : `${hoverBgClass}`
           }`}
         >
           <NewspaperIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.news") || "News"}</span>
+          <span className="font-medium">{t("create farmers") || "News"}</span>
         </Link>
-
-        {/* Calendar Link */}
         <Link
           to="/calendar"
           className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
