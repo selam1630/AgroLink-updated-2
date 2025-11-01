@@ -1,11 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface AuthContextType {
   token: string | null;
   userId: string | null;
+  role: string | null;
   loading: boolean;
-  setAuth: (token: string, userId: string) => void;
+  setAuth: (token: string, userId: string, role: string) => void;
   signOut: () => void;
 }
 
@@ -18,28 +19,40 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
+  const [role, setRole] = useState<string | null>(null);
+  const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     const storedUserId = localStorage.getItem('user-id');
-    if (storedToken && storedUserId) {
+    const storedRole = localStorage.getItem('role');
+
+    if (storedToken && storedUserId && storedRole) {
       setToken(storedToken);
       setUserId(storedUserId);
+      setRole(storedRole);
+    } else {
+      // cleanup in case of inconsistent data
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user-id');
+      localStorage.removeItem('role');
     }
-    setLoading(false);
+
+    setHydrated(true);
   }, []);
 
-  const setAuth = (newToken: string, newUserId: string) => {
+  const setAuth = (newToken: string, newUserId: string, newRole: string) => {
     setToken(newToken);
     setUserId(newUserId);
+    setRole(newRole);
     localStorage.setItem('authToken', newToken);
     localStorage.setItem('user-id', newUserId);
+    localStorage.setItem('role', newRole);
   };
 
   const signOut = () => {
     setToken(null);
     setUserId(null);
+    setRole(null);
     localStorage.removeItem('authToken');
     localStorage.removeItem('user-id');
     localStorage.removeItem('role');
@@ -48,17 +61,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const value = {
     token,
     userId,
-    loading,
+    role,
+    loading: !hydrated,
     setAuth,
     signOut,
   };
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };

@@ -49,9 +49,9 @@ const PaymentSuccessPage: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <Link to="/dashboard">
+            <Link to="/products">
               <Button className="bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors duration-300">
-                {t("paymentSuccess.backToDashboard")}
+                {t("paymentSuccess.backToProducts")}
               </Button>
             </Link>
           </motion.div>

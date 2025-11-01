@@ -41,6 +41,7 @@ function App() {
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/about" element={<About />} />
             <Route path="/" element={<LandingPage />} />
+             <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Route>
 
           {/* Dashboard Pages with the Header and Sidebar */}
@@ -54,7 +55,6 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/disease-detection" element={<AdviceForm />} />
             <Route path="/my-advice" element={<FarmerAdviceDashboard />} />
-             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/admin-dashboard2" element={<AdminDashboard2 />} />
             <Route path="/weather-detector" element={<Weather />} />
             <Route path="/new-posting" element={<NewPostingPage />} />
