@@ -58,7 +58,7 @@ const NewPostingPage: React.FC = () => {
     <div className="flex items-center justify-center min-h-screen bg-blue-50 p-4">
       <div className="bg-white p-8 md:p-10 rounded-xl shadow-2xl w-full max-w-lg">
         <h1 className="text-3xl md:text-4xl font-bold text-green-700 text-center mb-6">
-          📝 Create New Posting
+          Create New Posting
         </h1>
 
         {error && (
@@ -66,7 +66,6 @@ const NewPostingPage: React.FC = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Category */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
               Category
@@ -75,7 +74,7 @@ const NewPostingPage: React.FC = () => {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               <option value="news">Agriculture News</option>
               <option value="market">Weekly Market Prices</option>
@@ -159,7 +158,7 @@ const NewPostingPage: React.FC = () => {
               onClick={() => navigate("/dashboard")}
               className="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-all duration-300"
             >
-              ⬅ Back
+              Back
             </button>
 
             <button
@@ -167,7 +166,7 @@ const NewPostingPage: React.FC = () => {
               disabled={loading}
               className="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-all duration-300 disabled:opacity-50"
             >
-              {loading ? "Posting..." : "✅ Post"}
+              {loading ? "Posting..." : "Post"}
             </button>
           </div>
         </form>

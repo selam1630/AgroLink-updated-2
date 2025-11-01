@@ -8,44 +8,45 @@ interface Product {
   price: number;
   isSold: boolean;
   image: string;
-  quantity: number; 
+  quantity: number;
+  user?: { name: string; phone: string }; 
 }
 
-interface Farmer {
+interface Admin {
   id: string;
   name: string;
   phone: string;
   email: string;
 }
 
-interface FarmerProfileResponse {
-  farmer: Farmer;
-  postedProducts: Product[];
+interface AdminProfileResponse {
+  admin: Admin;
+  availableProducts: Product[];
   soldProducts: Product[];
 }
 
-const FarmerProfile: React.FC = () => {
+const AdminProfile: React.FC = () => {
   const { token, userId } = useAuth();
-  const [profile, setProfile] = useState<FarmerProfileResponse | null>(null);
+  const [profile, setProfile] = useState<AdminProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState<Farmer | null>(null);
+  const [formData, setFormData] = useState<Admin | null>(null);
   const [updating, setUpdating] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [newPrice, setNewPrice] = useState<number>(0);
   const fetchProfile = async () => {
     try {
-      const res = await axios.get<FarmerProfileResponse>(
+      const res = await axios.get<AdminProfileResponse>(
         `http://localhost:5000/api/profile/${userId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       setProfile(res.data);
-      setFormData(res.data.farmer);
+      setFormData(res.data.admin);
     } catch (err: any) {
-      setError(err.response?.data?.error || "Failed to fetch farmer profile");
+      setError(err.response?.data?.error || "Failed to fetch admin profile");
     } finally {
       setLoading(false);
     }
@@ -53,14 +54,12 @@ const FarmerProfile: React.FC = () => {
 
   useEffect(() => {
     if (!token || !userId) {
-      setError("You must be logged in to view this page");
+      setError("You must be logged in as an admin to view this page");
       setLoading(false);
       return;
     }
-
     fetchProfile();
   }, [token, userId]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (formData) setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -69,22 +68,23 @@ const FarmerProfile: React.FC = () => {
     if (!formData) return;
     setUpdating(true);
     try {
-      const res = await axios.put<Farmer>(
+      const res = await axios.put(
         `http://localhost:5000/api/profile/${userId}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
       setProfile((prev) =>
         prev
-          ? { ...prev, farmer: res.data }
-          : { farmer: res.data, postedProducts: [], soldProducts: [] }
+          ? { ...prev, admin: res.data.admin }
+          : { admin: res.data.admin, availableProducts: [], soldProducts: [] }
       );
-      setFormData(res.data);
 
+      setFormData(res.data.admin);
       setEditing(false);
       setError(null);
     } catch (err: any) {
-      setError(err.response?.data?.error || "Failed to update profile");
+      setError(err.response?.data?.error || "Failed to update admin profile");
     } finally {
       setUpdating(false);
     }
@@ -97,7 +97,11 @@ const FarmerProfile: React.FC = () => {
     try {
       await axios.put(
         `http://localhost:5000/api/products/${editingProduct.id}`,
-        { price: newPrice, name: editingProduct.name, quantity: editingProduct.quantity }, 
+        {
+          price: newPrice,
+          name: editingProduct.name,
+          quantity: editingProduct.quantity,
+        },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setEditingProduct(null);
@@ -110,11 +114,10 @@ const FarmerProfile: React.FC = () => {
   const handleDeleteProduct = async (productId: string) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(
-          `http://localhost:5000/api/products/${productId}`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        fetchProfile(); 
+        await axios.delete(`http://localhost:5000/api/products/${productId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        fetchProfile();
       } catch (err: any) {
         setError(err.response?.data?.error || "Failed to delete product.");
       }
@@ -126,8 +129,8 @@ const FarmerProfile: React.FC = () => {
   if (!profile) return null;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-green-700">Farmer Profile</h2>
+    <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <h2 className="text-2xl font-bold mb-4 text-green-700">Admin Profile</h2>
 
       {editing ? (
         <div className="space-y-4">
@@ -166,7 +169,7 @@ const FarmerProfile: React.FC = () => {
             <button
               onClick={() => {
                 setEditing(false);
-                setFormData(profile.farmer);
+                setFormData(profile.admin);
                 setError(null);
               }}
               className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
@@ -179,13 +182,13 @@ const FarmerProfile: React.FC = () => {
       ) : (
         <div>
           <p>
-            <strong>Name:</strong> {profile.farmer.name}
+            <strong>Name:</strong> {profile.admin.name}
           </p>
           <p>
-            <strong>Email:</strong> {profile.farmer.email}
+            <strong>Email:</strong> {profile.admin.email}
           </p>
           <p>
-            <strong>Phone:</strong> {profile.farmer.phone}
+            <strong>Phone:</strong> {profile.admin.phone}
           </p>
 
           <button
@@ -198,14 +201,12 @@ const FarmerProfile: React.FC = () => {
       )}
 
       <hr className="my-8" />
-      
-      {/* Posted Products */}
       <div className="mt-8">
         <h3 className="text-lg font-semibold text-gray-700 mb-2">
-          Posted Products
+          Available Products
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {profile.postedProducts.map((p) => (
+          {profile.availableProducts.map((p) => (
             <div
               key={p.id}
               className="border rounded-lg p-3 shadow-sm bg-gray-50 flex flex-col items-center"
@@ -217,18 +218,14 @@ const FarmerProfile: React.FC = () => {
               />
               <h4 className="font-medium">{p.name}</h4>
               <p className="font-semibold">${p.price}</p>
-              <p
-                className={`text-sm mt-1 ${
-                  p.isSold ? "text-red-500" : "text-green-600"
-                }`}
-              >
-                {p.isSold ? "Sold" : "Available"}
+              <p className="text-sm text-gray-600">
+                Farmer: {p.user?.name || "Unknown"} ({p.user?.phone || "N/A"})
               </p>
               <div className="flex space-x-2 mt-2">
                 <button
                   onClick={() => {
                     setEditingProduct(p);
-                    setNewPrice(p.price); 
+                    setNewPrice(p.price);
                   }}
                   className="bg-green-500 text-white px-3 py-1 text-sm rounded-md hover:bg-green-600 transition"
                 >
@@ -245,22 +242,18 @@ const FarmerProfile: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Price Update Modal */}
       {editingProduct && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-          <div className="relative bg-white p-6 rounded-lg shadow-xl w-96 mx-auto">
-            <h3 className="text-lg font-bold mb-4">Update Price for {editingProduct.name}</h3>
-            <div className="mb-4">
-              <label htmlFor="new-price" className="block text-sm font-medium text-gray-700 mb-1">New Price</label>
-              <input
-                id="new-price"
-                type="number"
-                value={newPrice}
-                onChange={(e) => setNewPrice(parseFloat(e.target.value) || 0)}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
-              />
-            </div>
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="relative bg-white p-6 rounded-lg shadow-xl w-96">
+            <h3 className="text-lg font-bold mb-4">
+              Update Price for {editingProduct.name}
+            </h3>
+            <input
+              type="number"
+              value={newPrice}
+              onChange={(e) => setNewPrice(parseFloat(e.target.value) || 0)}
+              className="w-full border rounded px-3 py-2 mb-4"
+            />
             <div className="flex justify-end space-x-2">
               <button
                 onClick={() => setEditingProduct(null)}
@@ -280,8 +273,6 @@ const FarmerProfile: React.FC = () => {
       )}
 
       <hr className="my-8" />
-
-      {/* Sold Products */}
       <div className="mt-8">
         <h3 className="text-lg font-semibold text-gray-700 mb-2">
           Sold Products
@@ -300,6 +291,9 @@ const FarmerProfile: React.FC = () => {
               <h4 className="font-medium">{p.name}</h4>
               <p className="font-semibold">${p.price}</p>
               <p className="text-sm text-red-500 mt-1">Sold</p>
+              <p className="text-xs text-gray-500">
+                Farmer: {p.user?.name || "Unknown"}
+              </p>
             </div>
           ))}
         </div>
@@ -308,4 +302,4 @@ const FarmerProfile: React.FC = () => {
   );
 };
 
-export default FarmerProfile;
+export default AdminProfile;

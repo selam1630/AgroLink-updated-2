@@ -20,7 +20,7 @@ import MainLayout from "./components/MainLayout";
 import About from "./pages/About";
 import PaymentSuccessPage from "./components/cart/PaymentSuccessPage";
 import AdviceForm from "./components/advice/DiseaseDetection";
-import FarmerProfile from "./components/profile/FarmerProfile";
+import FarmerProfile from "./components/profile/AdminProfile";
 import NewsPage from "./pages/news";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminDashboard2 from "./components/Admin2Dashboard";

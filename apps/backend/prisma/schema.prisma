@@ -51,6 +51,7 @@ model Product {
 
   createdAt DateTime? @default(now()) @map("createdAt")
   updatedAt DateTime? @updatedAt @map("updatedAt")
+  isDeleted   Boolean     @default(false)
 }
 
 model CartItem {

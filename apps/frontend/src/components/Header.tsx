@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import agrilcon from "../assets/images/agriIcon.png";
@@ -38,14 +38,27 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-const { cartCount } = useCart();
-const { token, role, signOut, loading } = useAuth();
-const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-const [isSearchVisible, setIsSearchVisible] = useState(false);
-const [searchQuery, setSearchQuery] = useState("");
-if (loading) return null;
-const isLoggedIn = !!token;
-const isBuyer = isLoggedIn && role?.toLowerCase() === "buyer";
+
+  const { cartCount } = useCart();
+  const { token, role, signOut, loading } = useAuth();
+
+  const [isBuyer, setIsBuyer] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Wait for auth to hydrate and update role dynamically
+  useEffect(() => {
+    if (!loading && token && role?.toLowerCase() === "buyer") {
+      setIsBuyer(true);
+    } else {
+      setIsBuyer(false);
+    }
+  }, [loading, token, role]);
+
+  if (loading) return null;
+
+  const isLoggedIn = !!token;
 
   const changeLanguage = (lng: string) => i18n.changeLanguage(lng);
 
