@@ -27,6 +27,7 @@ import AdminDashboard2 from "./components/Admin2Dashboard";
 import NewPostingPage from "./pages/NewPostingPage";
 import FertilizerAdvice from "./components/advice/FertilizerAdvice"
 import FarmerAdviceDashboard from "./components/advice/fertlizerAdvice for dashbord";
+import BuyerDashboardLayout from "./components/BuyerDashboardLayout"
 function App() {
   return (
     <CartProvider>
@@ -44,12 +45,10 @@ function App() {
 
           {/* Dashboard Pages with the Header and Sidebar */}
           <Route element={<DashboardLayout />}>
-            <Route path="/products" element={<ProductsList />} />
-            <Route path="/cart" element={<CartPage />} />
+            {/* <Route path="/products" element={<ProductsList />} /> */}
             <Route path="/profile" element={<FarmerProfile />} />
-            <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/create-product" element={<PostProduct />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
+            {/* <Route path="/products/:id" element={<ProductDetail />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/calendar" element={<Calendar />} />
@@ -62,7 +61,13 @@ function App() {
             <Route path="/fertilizer-advice" element={<FertilizerAdvice />} />
           </Route>
         
-
+<Route element={<BuyerDashboardLayout />}>
+  <Route path="/products" element={<ProductsList />} />
+  <Route path="/products/:id" element={<ProductDetail />} />
+  <Route path="/calendar2" element={<Calendar />} />
+  <Route path="/cart" element={<CartPage />} />
+  <Route path="/payment-success" element={<PaymentSuccessPage />} />
+</Route>
         </Routes>
       </BrowserRouter>
     </CartProvider>

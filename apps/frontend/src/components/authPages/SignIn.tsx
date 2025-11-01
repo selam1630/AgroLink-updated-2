@@ -42,9 +42,9 @@ const handleLoginSuccess = (data: any) => {
     } else if (data.role === 'admin') {
         navigate('/dashboard'); 
     } 
-    else {
+   else if (data.role === 'buyer') {
         navigate('/products'); 
-    }
+    } 
 };
   const handlePasswordLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

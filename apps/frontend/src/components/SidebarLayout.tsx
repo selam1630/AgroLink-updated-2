@@ -94,18 +94,6 @@ const SidebarLayout: React.FC = () => {
           </span>
         </Link>
 
-        {/* Products Link */}
-        <Link
-          to="/products"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/products")
-              ? `${activeBgClass} shadow-md`
-              : `${hoverBgClass}`
-          }`}
-        >
-          <PackageIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.products") || "Products"}</span>
-        </Link>
 
         {/* Pending Posts (Admin) */}
         <Link
@@ -134,21 +122,6 @@ const SidebarLayout: React.FC = () => {
             {t("Soil Advice") || "Fertilizer Advice"}
           </span>
         </Link>
-
-        {/* Disease Detection Link */}
-        <Link
-          to="/disease-detection"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/disease-detection")
-              ? `${activeBgClass} shadow-md`
-              : `${hoverBgClass}`
-          }`}
-        >
-          <ActivityIcon className="w-5 h-5" />
-          <span className="font-medium">
-            {t("nav.diseaseDetection") || "Disease Detection"}
-          </span>
-        </Link>
         
         {/* News Link */}
         <Link
@@ -160,18 +133,6 @@ const SidebarLayout: React.FC = () => {
           <NewspaperIcon className="w-5 h-5" />
           <span className="font-medium">{t("create farmers") || "News"}</span>
         </Link>
-        <Link
-          to="/calendar"
-          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
-            isActive("/calendar")
-              ? `${activeBgClass} shadow-md`
-              : `${hoverBgClass}`
-          }`}
-        >
-          <CalendarIcon className="w-5 h-5" />
-          <span className="font-medium">{t("nav.calendar") || "Calendar"}</span>
-        </Link>
-        
         {/* Weather Detector Link */}
         <Link
           to="/weather-detector"
@@ -183,6 +144,17 @@ const SidebarLayout: React.FC = () => {
         >
           <CloudSunIcon className="w-5 h-5" /> 
           <span className="font-medium">Send Alert</span>
+        </Link>
+        <Link
+          to="/calendar"
+          className={`flex items-center gap-3 px-3 py-3 rounded-lg ${transitionClass} ${
+            isActive("/calendar")
+              ? `${activeBgClass} shadow-md`
+              : `${hoverBgClass}`
+          }`}
+        >
+          <CalendarIcon className="w-5 h-5" />
+          <span className="font-medium">{t("nav.calendar") || "Calendar"}</span>
         </Link>
         
       <div className="">
